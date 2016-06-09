@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <title>Tic-Tac-Toe</title>
+</head>
+
+<body>
+    <table>
+        <th colspan="3">Tic-Tac-Toe</th>
+        <tr>
+            <td>
+                <button onClick="settl()" id="tl"></button>
+            </td>
+            <td>
+                <button onClick="settm()" id="tm"></button>
+            </td>
+            <td>
+                <button onclick="settr()" id="tr"></button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button onclick="setml()" id="ml"></button>
+            </td>
+            <td>
+                <button onclick="setmm()" id="mm"></button>
+            </td>
+            <td>
+                <button onclick="setmr()" id="mr"></button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button onclick="setbl()" id="bl"></button>
+            </td>
+            <td>
+                <button onclick="setbm()" id="bm"></button>
+            </td>
+            <td>
+                <button onclick="setbr()" id="br"></button>
+            </td>
+        </tr>
+    </table>
+    <p class="turnStyle" >Turn: </p>
+    <p class="turnStyle" id="turn">X</p>
+    <p id="winner"></p>
+    <button onclick="reset()" id="reset">Reset</button>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+        app.initialize();
+    </script>
+    
+    <script>
+        function settl(){
+            var turn = document.getElementById("turn").innerHTML;
+            if (turn==="X") {
+                document.getElementById("tl").innerHTML="X";
+                document.getElementById("tl").disabled=true;
+                document.getElementById("turn").innerHTML="O";
+                wincheck();
+            }
+            else
+            {
+                document.getElementById("tl").innerHTML="O";
+                document.getElementById("tl").disabled=true;
+                document.getElementById("turn").innerHTML="X";
+                wincheck();
+            }
+        }
+        
+        function settm(){
+            var turn = document.getElementById("turn").innerHTML;
+            if (turn==="X") {
+                document.getElementById("tm").innerHTML="X";
+                document.getElementById("tm").disabled=true;
+                document.getElementById("turn").innerHTML="O";
+                wincheck();
+            }
+            else
+            {
+                document.getElementById("tm").innerHTML="O";
+                document.getElementById("tm").disabled=true;
+                document.getElementById("turn").innerHTML="X";
+                wincheck();
+            }
+        }
+        
+        function settr(){
+            var turn = document.getElementById("turn").innerHTML;
+            if (turn==="X") {
+                document.getElementById("tr").innerHTML="X";
+                document.getElementById("tr").disabled=true;
+                document.getElementById("turn").innerHTML="O";
+                wincheck();
+            }
+            else
+            {
+                document.getElementById("tr").innerHTML="O";
+                document.getElementById("tr").disabled=true;
+                document.getElementById("turn").innerHTML="X";
+                wincheck();
+            }
+        }
+        
+        function setml(){
+            var turn = document.getElementById("turn").innerHTML;
+            if (turn==="X") {
+                document.getElementById("ml").innerHTML="X";
+                document.getElementById("ml").disabled=true;
+                document.getElementById("turn").innerHTML="O";
+                wincheck();
+            }
+            else
+            {
+                document.getElementById("ml").innerHTML="O";
+                document.getElementById("ml").disabled=true;
+                document.getElementById("turn").innerHTML="X";
+                wincheck();
+            }
+        }
+        
+        function setmm(){
+            var turn = document.getElementById("turn").innerHTML;
+            if (turn==="X") {
+                document.getElementById("mm").innerHTML="X";
+                document.getElementById("mm").disabled=true;
+                document.getElementById("turn").innerHTML="O";
+                wincheck();
+            }
+            else
+            {
+                document.getElementById("mm").innerHTML="O";
+                document.getElementById("mm").disabled=true;
+                document.getElementById("turn").innerHTML="X";
+                wincheck();
+            }
+        }
+        
+        function setmr(){
+            var turn = document.getElementById("turn").innerHTML;
+            if (turn==="X") {
+                document.getElementById("mr").innerHTML="X";
+                document.getElementById("mr").disabled=true;
+                document.getElementById("turn").innerHTML="O";
+                wincheck();
+            }
+            else
+            {
+                document.getElementById("mr").innerHTML="O";
+                document.getElementById("mr").disabled=true;
+                document.getElementById("turn").innerHTML="X";
+                wincheck();
+            }
+        }
+        
+        function setbl(){
+            var turn = document.getElementById("turn").innerHTML;
+            if (turn==="X") {
+                document.getElementById("bl").innerHTML="X";
+                document.getElementById("bl").disabled=true;
+                document.getElementById("turn").innerHTML="O";
+                wincheck();
+            }
+            else
+            {
+                document.getElementById("bl").innerHTML="O";
+                document.getElementById("bl").disabled=true;
+                document.getElementById("turn").innerHTML="X";
+                wincheck();
+            }
+        }
+        
+        function setbm(){
+            var turn = document.getElementById("turn").innerHTML;
+            if (turn==="X") {
+                document.getElementById("bm").innerHTML="X";
+                document.getElementById("bm").disabled=true;
+                document.getElementById("turn").innerHTML="O";
+                wincheck();
+            }
+            else
+            {
+                document.getElementById("bm").innerHTML="O";
+                document.getElementById("bm").disabled=true;
+                document.getElementById("turn").innerHTML="X";
+                wincheck();
+            }
+        }
+        
+        function setbr(){
+            var turn = document.getElementById("turn").innerHTML;
+            if (turn==="X") {
+                document.getElementById("br").innerHTML="X";
+                document.getElementById("br").disabled=true;
+                document.getElementById("turn").innerHTML="O";
+                wincheck();
+            }
+            else
+            {
+                document.getElementById("br").innerHTML="O";
+                document.getElementById("br").disabled=true;
+                document.getElementById("turn").innerHTML="X";
+                wincheck();
+            }
+        }
+        
+        function reset(){
+            document.getElementById("tl").disabled=false;
+            document.getElementById("tm").disabled=false;
+            document.getElementById("tr").disabled=false;
+            document.getElementById("ml").disabled=false;
+            document.getElementById("mm").disabled=false;
+            document.getElementById("mr").disabled=false;
+            document.getElementById("bl").disabled=false;
+            document.getElementById("bm").disabled=false;
+            document.getElementById("br").disabled=false;
+            document.getElementById("tl").innerHTML="";
+            document.getElementById("tm").innerHTML="";
+            document.getElementById("tr").innerHTML="";
+            document.getElementById("ml").innerHTML="";
+            document.getElementById("mm").innerHTML="";
+            document.getElementById("mr").innerHTML="";
+            document.getElementById("bl").innerHTML="";
+            document.getElementById("bm").innerHTML="";
+            document.getElementById("br").innerHTML="";
+            document.getElementById("turn").innerHTML="X";
+            document.getElementById("winner").innerHTML="";
+        }
+        
+        function wincheck(){
+            var tl=document.getElementById("tl").innerHTML;
+            var tm=document.getElementById("tm").innerHTML;
+            var tr=document.getElementById("tr").innerHTML;
+            var ml=document.getElementById("ml").innerHTML;
+            var mm=document.getElementById("mm").innerHTML;
+            var mr=document.getElementById("mr").innerHTML;
+            var bl=document.getElementById("bl").innerHTML;
+            var bm=document.getElementById("bm").innerHTML;
+            var br=document.getElementById("br").innerHTML;
+            if (tl==="X" && tm==="X" && tr==="X"){
+                document.getElementById("winner").innerHTML="Winner: X!";
+                document.getElementById("tl").disabled=true;
+                document.getElementById("tm").disabled=true;
+                document.getElementById("tr").disabled=true;
+                document.getElementById("ml").disabled=true;
+                document.getElementById("mm").disabled=true;
+                document.getElementById("mr").disabled=true;
+                document.getElementById("bl").disabled=true;
+                document.getElementById("bm").disabled=true;
+                document.getElementById("br").disabled=true;
+            }
+            else if (tl==="O" && tm==="O" && tr==="O"){
+                document.getElementById("winner").innerHTML="Winner: O!";
+                document.getElementById("tl").disabled=true;
+                document.getElementById("tm").disabled=true;
+                document.getElementById("tr").disabled=true;
+                document.getElementById("ml").disabled=true;
+                document.getElementById("mm").disabled=true;
+                document.getElementById("mr").disabled=true;
+                document.getElementById("bl").disabled=true;
+                document.getElementById("bm").disabled=true;
+                document.getElementById("br").disabled=true;
+            }
+            else if (ml==="X" && mm==="X" && mr==="X"){
+                document.getElementById("winner").innerHTML="Winner: X!";
+                document.getElementById("tl").disabled=true;
+                document.getElementById("tm").disabled=true;
+                document.getElementById("tr").disabled=true;
+                document.getElementById("ml").disabled=true;
+                document.getElementById("mm").disabled=true;
+                document.getElementById("mr").disabled=true;
+                document.getElementById("bl").disabled=true;
+                document.getElementById("bm").disabled=true;
+                document.getElementById("br").disabled=true;
+            }
+            else if (ml==="O" && mm==="O" && mr==="O"){
+                document.getElementById("winner").innerHTML="Winner: O!";
+                document.getElementById("tl").disabled=true;
+                document.getElementById("tm").disabled=true;
+                document.getElementById("tr").disabled=true;
+                document.getElementById("ml").disabled=true;
+                document.getElementById("mm").disabled=true;
+                document.getElementById("mr").disabled=true;
+                document.getElementById("bl").disabled=true;
+                document.getElementById("bm").disabled=true;
+                document.getElementById("br").disabled=true;
+            }
+            else if (bl==="X" && bm==="X" && br==="X"){
+                document.getElementById("winner").innerHTML="Winner: X!";
+                document.getElementById("tl").disabled=true;
+                document.getElementById("tm").disabled=true;
+                document.getElementById("tr").disabled=true;
+                document.getElementById("ml").disabled=true;
+                document.getElementById("mm").disabled=true;
+                document.getElementById("mr").disabled=true;
+                document.getElementById("bl").disabled=true;
+                document.getElementById("bm").disabled=true;
+                document.getElementById("br").disabled=true;
+            }
+            else if (bl==="O" && bm==="O" && br==="O"){
+                document.getElementById("winner").innerHTML="Winner: O!";
+                document.getElementById("tl").disabled=true;
+                document.getElementById("tm").disabled=true;
+                document.getElementById("tr").disabled=true;
+                document.getElementById("ml").disabled=true;
+                document.getElementById("mm").disabled=true;
+                document.getElementById("mr").disabled=true;
+                document.getElementById("bl").disabled=true;
+                document.getElementById("bm").disabled=true;
+                document.getElementById("br").disabled=true;
+            }
+            else if (tl==="X" && ml==="X" && bl==="X"){
+                document.getElementById("winner").innerHTML="Winner: X!";
+                document.getElementById("tl").disabled=true;
+                document.getElementById("tm").disabled=true;
+                document.getElementById("tr").disabled=true;
+                document.getElementById("ml").disabled=true;
+                document.getElementById("mm").disabled=true;
+                document.getElementById("mr").disabled=true;
+                document.getElementById("bl").disabled=true;
+                document.getElementById("bm").disabled=true;
+                document.getElementById("br").disabled=true;
+            }
+            else if (tl==="O" && ml==="O" && bl==="O"){
+                document.getElementById("winner").innerHTML="Winner: O!";
+                document.getElementById("tl").disabled=true;
+                document.getElementById("tm").disabled=true;
+                document.getElementById("tr").disabled=true;
+                document.getElementById("ml").disabled=true;
+                document.getElementById("mm").disabled=true;
+                document.getElementById("mr").disabled=true;
+                document.getElementById("bl").disabled=true;
+                document.getElementById("bm").disabled=true;
+                document.getElementById("br").disabled=true;
+            }
+            else if (tm==="X" && mm==="X" && bm==="X"){
+                document.getElementById("winner").innerHTML="Winner: X!";
+                document.getElementById("tl").disabled=true;
+                document.getElementById("tm").disabled=true;
+                document.getElementById("tr").disabled=true;
+                document.getElementById("ml").disabled=true;
+                document.getElementById("mm").disabled=true;
+                document.getElementById("mr").disabled=true;
+                document.getElementById("bl").disabled=true;
+                document.getElementById("bm").disabled=true;
+                document.getElementById("br").disabled=true;
+            }
+            else if (tm==="O" && mm==="O" && bm==="O"){
+                document.getElementById("winner").innerHTML="Winner: O!";
+                document.getElementById("tl").disabled=true;
+                document.getElementById("tm").disabled=true;
+                document.getElementById("tr").disabled=true;
+                document.getElementById("ml").disabled=true;
+                document.getElementById("mm").disabled=true;
+                document.getElementById("mr").disabled=true;
+                document.getElementById("bl").disabled=true;
+                document.getElementById("bm").disabled=true;
+                document.getElementById("br").disabled=true;
+            }
+            else if (tr==="X" && mr==="X" && br==="X"){
+                document.getElementById("winner").innerHTML="Winner: X!";
+                document.getElementById("tl").disabled=true;
+                document.getElementById("tm").disabled=true;
+                document.getElementById("tr").disabled=true;
+                document.getElementById("ml").disabled=true;
+                document.getElementById("mm").disabled=true;
+                document.getElementById("mr").disabled=true;
+                document.getElementById("bl").disabled=true;
+                document.getElementById("bm").disabled=true;
+                document.getElementById("br").disabled=true;
+            }
+            else if (tr==="O" && mr==="O" && br==="O"){
+                document.getElementById("winner").innerHTML="Winner: O!";
+                document.getElementById("tl").disabled=true;
+                document.getElementById("tm").disabled=true;
+                document.getElementById("tr").disabled=true;
+                document.getElementById("ml").disabled=true;
+                document.getElementById("mm").disabled=true;
+                document.getElementById("mr").disabled=true;
+                document.getElementById("bl").disabled=true;
+                document.getElementById("bm").disabled=true;
+                document.getElementById("br").disabled=true;
+            }
+            else if (tl==="X" && mm==="X" && br==="X"){
+                document.getElementById("winner").innerHTML="Winner: X!";
+                document.getElementById("tl").disabled=true;
+                document.getElementById("tm").disabled=true;
+                document.getElementById("tr").disabled=true;
+                document.getElementById("ml").disabled=true;
+                document.getElementById("mm").disabled=true;
+                document.getElementById("mr").disabled=true;
+                document.getElementById("bl").disabled=true;
+                document.getElementById("bm").disabled=true;
+                document.getElementById("br").disabled=true;
+            }
+            else if (tl==="O" && mm==="O" && br==="O"){
+                document.getElementById("winner").innerHTML="Winner: O!";
+                document.getElementById("tl").disabled=true;
+                document.getElementById("tm").disabled=true;
+                document.getElementById("tr").disabled=true;
+                document.getElementById("ml").disabled=true;
+                document.getElementById("mm").disabled=true;
+                document.getElementById("mr").disabled=true;
+                document.getElementById("bl").disabled=true;
+                document.getElementById("bm").disabled=true;
+                document.getElementById("br").disabled=true;
+            }
+            else if (tr==="X" && mm==="X" && bl==="X"){
+                document.getElementById("winner").innerHTML="Winner: X!";
+                document.getElementById("tl").disabled=true;
+                document.getElementById("tm").disabled=true;
+                document.getElementById("tr").disabled=true;
+                document.getElementById("ml").disabled=true;
+                document.getElementById("mm").disabled=true;
+                document.getElementById("mr").disabled=true;
+                document.getElementById("bl").disabled=true;
+                document.getElementById("bm").disabled=true;
+                document.getElementById("br").disabled=true;
+            }
+            else if (tr==="O" && mm==="O" && bl==="O"){
+                document.getElementById("winner").innerHTML="Winner: O!";
+                document.getElementById("tl").disabled=true;
+                document.getElementById("tm").disabled=true;
+                document.getElementById("tr").disabled=true;
+                document.getElementById("ml").disabled=true;
+                document.getElementById("mm").disabled=true;
+                document.getElementById("mr").disabled=true;
+                document.getElementById("bl").disabled=true;
+                document.getElementById("bm").disabled=true;
+                document.getElementById("br").disabled=true;
+            }
+            else if (document.getElementById("tl").disabled && document.getElementById("tm").disabled && document.getElementById("tr").disabled && document.getElementById("ml").disabled && document.getElementById("mm").disabled && document.getElementById("mr").disabled && document.getElementById("bl").disabled && document.getElementById("bm").disabled && document.getElementById("br").disabled) {
+                document.getElementById("winner").innerHTML="No winner!";
+                document.getElementById("tl").disabled=true;
+                document.getElementById("tm").disabled=true;
+                document.getElementById("tr").disabled=true;
+                document.getElementById("ml").disabled=true;
+                document.getElementById("mm").disabled=true;
+                document.getElementById("mr").disabled=true;
+                document.getElementById("bl").disabled=true;
+                document.getElementById("bm").disabled=true;
+                document.getElementById("br").disabled=true;
+            }
+        }
+    </script>
+    
+</body>
+
+</html>
